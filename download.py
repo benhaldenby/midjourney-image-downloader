@@ -5,18 +5,18 @@ from datetime import datetime
 
 # -------- CONFIG ------------------
 # Get your user ID from the "view as visitor link (https://www.midjourney.com/app/users/.../) on your Midjourney gallery
-USER_ID = None
+USER_ID = "831784424554627072"
 # In your browser's dev tools, find the `__Secure-next-auth.session-token` cookie.
-SESSION_TOKEN = None
+SESSION_TOKEN = "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..iZ9VXYbzGGUEcoAf.cLzPbQbQWcb39VyIwceMYQ50q1ZfAwBVpjCj18gc6PF5OPtql4JxlOuhetc-hOdavPHgRTMk1vLKrZqfMW9eBoVZnVSW_JUpZOsdPIaQmipMDEkJ2WHNyJi-JcU72yLpx6lOioGiWHJXhXRlJOj-pFYIYleC6iDSu761MoEintIra_JQU8kd923dfTPYjKgziazHs3PBQ0ncPw3sEmqG9JjyElrpCe2VJfwC4YSkni_6zLx6MZ2236ngh7cwbn3CLJmtP8vP10nhIeWynzfsjjwHuQYGi-KeLmb8pBqLQj0Kc0RHf6qBfRwME_bsCkvnxyv-tWUcfrWmCMwzQcGiILHst3jurpe6moBs0Ah_ioth8XMPjQxvxt0ftDB_J1xEqGWR7DAXi_oebFtUiXq3UralsSl6LAeEgcMYgiW-7pQiAU-vj5G3CwlhiPsDc0FIpIG23HAIKbP6rzzDNFKylQea8_gRQBFTQ9uER7WkqVaAMYh4HAplT-S52OxiV-dGZyZ2sLetbElGsgvcCtzNsUT2AjFtL-HaGhpnCaLXAqnIBVaeYQwKrvSni4ITwjloIoUotW6S0HGjejk1iojfyggpkRQpuR_N0_ph8U8o5e6Y0etRgKnMgeQImuDWAcvBT7P125ORIKsgQZ7ARLZIuJ5xrqtb-nhKXa6WVDKax7DXVw1ESsM4o3WNiM1DbQJQ0TS6GcBHl9auD3pNz0cE38zV9_KvBX-O7U2XkHoPqd5K2ZYhpSZEQt8EKsNrqx5L4Mv3sgkslTu9ga7-fU1HlwMHiD8pA69VcuG6gDWx24CoKSfz4h2hsagRyuRccOU-ORW281TU4yCr0NU5PVbgDef3tKGHy_ZZ2PlnDAB_egj0BGP28NIeWn5F_PSm1tf4HWV1g2hWn1WZm_J2VOuCRR_YeZveTaG6iNXF6rBZn7SAgI17qzl8WHp4LlQJvxt78Be-1vIyHswYWp5LIjazC3U71Kk76X2L22J1gx9CqIIgF891hubTUCb5jSeDAlfIhD_kf08Rjs0msgnTaLQl0XJ9puOaBhYqhXStLFwb85kvluD5GzDXCM_nSwueQtCn7bgfn0xGqPKrr0QEjKlhpPGRFwZg1erfevZMoTLnOGYx_QwQcr33w31z2U4dPciMFC70ioKmqFKKe0Ydf1mol5AGzJszpi444BDY1sJP-UvvzvaeNm88oqI2ejcP2wOIr1jF3ltQZnoUO1KNr8T0HHcRImrBWDwLdU2GKlN6s_VdDgFGAJtqeeAQ5jvjpCVAdzVuCmnrN_y6Gp3WzJyB8bq-SGfmoDy6EPRSOqa618B3Zp28AIIfMFclhBKIhRe8JJJZZAIVtpe8Tfb56CJcJMMI0AZEDDp_mlAgeyA2Iy_Q-IYMuW_hQ-g-NzVMPKElOb7Fpzxr8SaQHbcUoehDUE89QsZ6ll6nkHWnrqw5lnrk5d_Gp14Yk1JIcbcVpBnqXE4jGEryNLonU_X9SepI01FGLA.NYAkjCYZIqat7WBjsPxBfw"
 # ---------------------------------
 
 
 # ------- OPTIONS -----------------
-UPSCALES_ONLY = True
-GRIDS_ONLY = False
+UPSCALES_ONLY = False
+GRIDS_ONLY = True
 USE_DATE_FOLDERS = True
-GROUP_BY_MONTH = False
-SKIP_LOW_RATED = True
+GROUP_BY_MONTH = True
+SKIP_LOW_RATED = False
 # ---------------------------------
 
 UA = 'Midjourney-image-downloader/0.0.1'
@@ -79,8 +79,8 @@ def save_prompt(image_json):
     month = enqueue_time.month
     day = enqueue_time.day
 
-    filename = prompt.replace(" ", "_").replace(",", "").replace("*", "").replace("'", "").replace(":", "").replace(
-        "__", "_").replace("<", "").replace(">", "").replace("/", "").replace(".", "").lower().strip("_*")[:100]
+    filename = prompt
+    #.replace(" ", "_").replace(",", "").replace("*", "").replace("'", "").replace(":", "").replace("__", "_").replace("<", "").replace(">", "").replace("/", "").replace(".", "").lower().strip("_*")[:100]
 
     ranking_by_user = image_json.get("ranking_by_user")
     if SKIP_LOW_RATED and ranking_by_user and isinstance(ranking_by_user, int) and (ranking_by_user in [1, 2]):
